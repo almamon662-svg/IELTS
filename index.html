@@ -1,72 +1,788 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IELTS Practice Hub - Free Mock Tests</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Master — Free Practice & Mock Tests</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET ========== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #0a0e27;
+  --bg-secondary: #131832;
+  --bg-card: rgba(30, 36, 68, 0.6);
+  --accent-1: #6366f1;
+  --accent-2: #ec4899;
+  --accent-3: #14b8a6;
+  --accent-4: #f59e0b;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a8c0;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(236, 72, 153, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(20, 184, 166, 0.1) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* ========== LAYOUT ========== */
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  width: 260px;
+  background: rgba(19, 24, 50, 0.8);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid var(--border);
+  padding: 24px 0;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px 28px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+}
+
+.logo-text h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff, #a0a8c0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-text p {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.nav-section {
+  padding: 0 16px;
+  margin-bottom: 24px;
+}
+
+.nav-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  padding: 0 12px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.15));
+  color: var(--text-primary);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.nav-item .icon { font-size: 18px; }
+
+/* ========== MAIN ========== */
+.main {
+  flex: 1;
+  margin-left: 260px;
+  padding: 32px 40px;
+  min-width: 0;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.page-title h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.page-title p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.menu-toggle {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* ========== SEARCH ========== */
+.search-box {
+  position: relative;
+  max-width: 320px;
+  width: 100%;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.search-box input:focus {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.search-box::before {
+  content: '🔍';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+/* ========== MODE TOGGLE ========== */
+.mode-toggle {
+  display: inline-flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 5px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.mode-btn {
+  padding: 10px 28px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.mode-btn.active {
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color: white;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+/* ========== STATS ========== */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(20px);
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover { transform: translateY(-3px); }
+
+.stat-card .label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.stat-card .value {
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.stat-card:nth-child(1) .value { color: var(--accent-1); }
+.stat-card:nth-child(2) .value { color: var(--accent-2); }
+.stat-card:nth-child(3) .value { color: var(--accent-3); }
+.stat-card:nth-child(4) .value { color: var(--accent-4); }
+
+/* ========== SKILLS GRID ========== */
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.skill-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover::before { transform: scaleX(1); }
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+}
+
+.skill-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
+.skill-card:nth-child(1) .skill-icon { background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05)); }
+.skill-card:nth-child(2) .skill-icon { background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(236, 72, 153, 0.05)); }
+.skill-card:nth-child(3) .skill-icon { background: linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(20, 184, 166, 0.05)); }
+.skill-card:nth-child(4) .skill-icon { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05)); }
+
+.skill-card h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.skill-card p {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.skill-card .arrow {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 18px;
+  color: var(--text-secondary);
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover .arrow {
+  transform: translateX(5px);
+  color: var(--accent-1);
+}
+
+/* ========== CAMBRIDGE GRID ========== */
+.cambridge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.book-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(20px);
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+}
+
+.book-number {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 auto 12px;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.book-card h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.book-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.book-btn {
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  display: block;
+}
+
+.book-btn.academic {
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color: white;
+}
+
+.book-btn.academic:hover {
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  transform: scale(1.03);
+}
+
+.book-btn.general {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.book-btn.general:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-3);
+}
+
+/* ========== TOAST ========== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color: white;
+  padding: 14px 28px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: all 0.35s ease;
+  z-index: 1000;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  margin-top: 60px;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.footer p { margin: 6px 0; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; padding: 20px; }
+  .menu-toggle { display: block; }
+  .page-title h2 { font-size: 22px; }
+  .search-box { max-width: 100%; }
+}
+
+@media (max-width: 500px) {
+  .cambridge-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .book-card { padding: 14px; }
+  .mode-btn { padding: 9px 18px; font-size: 13px; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>🎯 IELTS Practice Hub</h1>
-      <p class="tagline">Free Academic & General Training Practice Tests</p>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">
+      <div class="logo-icon">🎯</div>
+      <div class="logo-text">
+        <h1>IELTS Master</h1>
+        <p>Practice Platform</p>
+      </div>
     </div>
-  </header>
 
-  <main class="container">
-    <section class="test-type-selector">
-      <h2>Choose Your Test Type</h2>
-      <div class="type-buttons">
-        <button class="type-btn active" data-type="academic">Academic</button>
-        <button class="type-btn" data-type="general">General Training</button>
-      </div>
-    </section>
+    <nav class="nav-section">
+      <div class="nav-label">Menu</div>
+      <a class="nav-item active" onclick="scrollTo('dashboard')">
+        <span class="icon">📊</span> Dashboard
+      </a>
+      <a class="nav-item" onclick="scrollTo('skills')">
+        <span class="icon">📚</span> Practice Skills
+      </a>
+      <a class="nav-item" onclick="scrollTo('cambridge')">
+        <span class="icon">📖</span> Cambridge Tests
+      </a>
+    </nav>
 
-    <section class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-icon">🎧</div>
-        <h3>Listening</h3>
-        <p>4 sections, 40 questions</p>
-        <a href="#" class="start-btn">Start Practice</a>
-      </div>
+    <nav class="nav-section">
+      <div class="nav-label">Test Type</div>
+      <a class="nav-item" onclick="setMode('academic')">
+        <span class="icon">🎓</span> Academic
+      </a>
+      <a class="nav-item" onclick="setMode('general')">
+        <span class="icon">📝</span> General Training
+      </a>
+    </nav>
 
-      <div class="skill-card">
-        <div class="skill-icon">📖</div>
-        <h3>Reading</h3>
-        <p>3 passages, 40 questions</p>
-        <a href="#" class="start-btn">Start Practice</a>
-      </div>
+    <nav class="nav-section">
+      <div class="nav-label">More</div>
+      <a class="nav-item" onclick="showToast('Coming soon!')">
+        <span class="icon">📈</span> My Progress
+      </a>
+      <a class="nav-item" onclick="showToast('Coming soon!')">
+        <span class="icon">⚙️</span> Settings
+      </a>
+    </nav>
+  </aside>
 
-      <div class="skill-card">
-        <div class="skill-icon">✍️</div>
-        <h3>Writing</h3>
-        <p>Task 1 & Task 2</p>
-        <a href="#" class="start-btn">Start Practice</a>
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+      <div class="page-title">
+        <h2>Welcome Back 👋</h2>
+        <p>Ready to practice for your IELTS exam?</p>
       </div>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search tests..." onkeyup="searchBooks()">
+      </div>
+    </div>
 
-      <div class="skill-card">
-        <div class="skill-icon">🗣️</div>
-        <h3>Speaking</h3>
-        <p>3 parts, 11-14 minutes</p>
-        <a href="#" class="start-btn">Start Practice</a>
+    <!-- DASHBOARD STATS -->
+    <div id="dashboard">
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="label">Cambridge Books</div>
+          <div class="value">12</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Total Tests</div>
+          <div class="value">24</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Practice Skills</div>
+          <div class="value">4</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Free Forever</div>
+          <div class="value">100%</div>
+        </div>
       </div>
-    </section>
-   
-    <section class="mock-test-section">
-      <h2>Full Mock Test</h2>
-      <p>Complete all four sections under real exam conditions</p>
-      <a href="#" class="mock-btn">Start Full Mock Test</a>
-    </section>
+    </div>
+
+    <!-- MODE TOGGLE -->
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="btn-academic" onclick="setMode('academic')">Academic</button>
+      <button class="mode-btn" id="btn-general" onclick="setMode('general')">General Training</button>
+    </div>
+
+    <!-- SKILLS SECTION -->
+    <div id="skills">
+      <div class="section-title">🎯 Practice by Skill</div>
+      <div class="skills-grid">
+        <div class="skill-card" onclick="showToast('Listening practice - Coming soon!')">
+          <div class="skill-icon">🎧</div>
+          <h3>Listening</h3>
+          <p>4 sections • 40 questions</p>
+          <span class="arrow">→</span>
+        </div>
+
+        <div class="skill-card" onclick="showToast('Reading practice - Coming soon!')">
+          <div class="skill-icon">📖</div>
+          <h3>Reading</h3>
+          <p id="reading-desc">3 passages • 40 questions</p>
+          <span class="arrow">→</span>
+        </div>
+
+        <div class="skill-card" onclick="showToast('Writing practice - Coming soon!')">
+          <div class="skill-icon">✍️</div>
+          <h3>Writing</h3>
+          <p id="writing-desc">Task 1 & Task 2</p>
+          <span class="arrow">→</span>
+        </div>
+
+        <div class="skill-card" onclick="showToast('Speaking practice - Coming soon!')">
+          <div class="skill-icon">🗣️</div>
+          <h3>Speaking</h3>
+          <p>3 parts • 11-14 min</p>
+          <span class="arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAMBRIDGE SECTION -->
+    <div id="cambridge">
+      <div class="section-title">📚 Cambridge Practice Tests (10-21)</div>
+      <div class="cambridge-grid" id="cambridgeGrid">
+        <!-- Generated by JS -->
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>⚠️ Independent practice platform. Not affiliated with British Council, IDP, or Cambridge.</p>
+      <p>© 2026 IELTS Master — Free Forever</p>
+    </footer>
   </main>
+</div>
 
-  <footer>
-    <div class="container">
-      <p>⚠️ This is an independent practice platform. Not affiliated with the British Council, IDP, or Cambridge.</p>
-      <p>&copy; 2026 IELTS Practice Hub</p>
-    </div>
-  </footer>
+<div class="toast" id="toast"></div>
 
-  <script src="script.js"></script>
+<script>
+// ============================================
+// CAMBRIDGE BOOKS DATA
+// ============================================
+// To add a test link, put your PDF in a folder called "cambridge/"
+// and change link to "cambridge/c10-academic.pdf" and ready to true
+// ============================================
+const cambridgeBooks = [
+  { number: 10, academic: { link: "", ready: false }, general: { link: "", ready: false } },
+  { number: 11, academic: { link: "", ready: false }, general: { link: "", ready: false } },
+  { number: 12, academic: { link: "", ready: false }, general: { link: "", ready: false } },
+  { number: 13, academic: { link: "", ready: false }, general: { link: "", ready: false } },
+  { number: 14, academic: { link: "", ready: false }, general: { link: "", ready: false } },
+  { number: 15, academic: { link: "", ready: false }, general: { link: "", ready: false } },
+  { number: 16, academic: { link: "", ready: false }, general: { link: "", ready: false } },
+  { number: 17, academic: { link: "", ready: false }, general: { link: "", ready: false } },
+  { number: 18, academic: { link: "", ready: false }, general: { link: "", ready: false } },
+  { number: 19, academic: { link: "", ready: false }, general: { link: "", ready: false } },
+  { number: 20, academic: { link: "", ready: false }, general: { link: "", ready: false } },
+  { number: 21, academic: { link: "", ready: false }, general: { link: "", ready: false } }
+];
+
+// ============================================
+// RENDER CAMBRIDGE BOOKS
+// ============================================
+function renderBooks(filter = '') {
+  const grid = document.getElementById('cambridgeGrid');
+  if (!grid) return;
+
+  grid.innerHTML = '';
+
+  const filtered = cambridgeBooks.filter(b => 
+    String(b.number).includes(filter)
+  );
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p style="color:var(--text-secondary); grid-column: 1/-1; text-align:center; padding:20px;">No books found</p>';
+    return;
+  }
+
+  filtered.forEach(book => {
+    const card = document.createElement('div');
+    card.className = 'book-card';
+
+    const acadBtn = book.academic.ready
+      ? `<a href="${book.academic.link}" target="_blank" class="book-btn academic">📘 Academic</a>`
+      : `<button class="book-btn academic" onclick="showToast('Cambridge ${book.number} Academic - Coming soon!')">📘 Academic</button>`;
+
+    const genBtn = book.general.ready
+      ? `<a href="${book.general.link}" target="_blank" class="book-btn general">📗 General</a>`
+      : `<button class="book-btn general" onclick="showToast('Cambridge ${book.number} General - Coming soon!')">📗 General</button>`;
+
+    card.innerHTML = `
+      <div class="book-number">${book.number}</div>
+      <h4>Cambridge IELTS</h4>
+      <div class="book-buttons">
+        ${acadBtn}
+        ${genBtn}
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+// ============================================
+// MODE TOGGLE (Academic / General)
+// ============================================
+let currentMode = 'academic';
+
+function setMode(mode) {
+  currentMode = mode;
+  document.getElementById('btn-academic').classList.toggle('active', mode === 'academic');
+  document.getElementById('btn-general').classList.toggle('active', mode === 'general');
+
+  const readingDesc = document.getElementById('reading-desc');
+  const writingDesc = document.getElementById('writing-desc');
+
+  if (mode === 'academic') {
+    readingDesc.textContent = '3 long passages • 40 questions';
+    writingDesc.textContent = 'Task 1 (Graph) & Task 2 (Essay)';
+    showToast('Academic mode activated 🎓');
+  } else {
+    readingDesc.textContent = '3 sections • everyday texts';
+    writingDesc.textContent = 'Task 1 (Letter) & Task 2 (Essay)';
+    showToast('General Training mode activated 📝');
+  }
+}
+
+// ============================================
+// SEARCH
+// ============================================
+function searchBooks() {
+  const query = document.getElementById('searchInput').value.trim();
+  renderBooks(query);
+}
+
+// ============================================
+// TOAST NOTIFICATION
+// ============================================
+let toastTimeout;
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2200);
+}
+
+// ============================================
+// SIDEBAR TOGGLE (Mobile)
+// ============================================
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    event.target.closest('.nav-item').classList.add('active');
+  }
+}
+
+// ============================================
+// INIT
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  renderBooks();
+});
+</script>
+
 </body>
 </html>
