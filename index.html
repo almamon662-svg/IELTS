@@ -3,785 +3,833 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IELTS Master — Free Practice & Mock Tests</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>IELTS Master — Free Practice Tests & Mock Exams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-/* ========== RESET ========== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ============ RESET ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 
-:root {
-  --bg-primary: #0a0e27;
-  --bg-secondary: #131832;
-  --bg-card: rgba(30, 36, 68, 0.6);
-  --accent-1: #6366f1;
-  --accent-2: #ec4899;
-  --accent-3: #14b8a6;
-  --accent-4: #f59e0b;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a8c0;
-  --border: rgba(255, 255, 255, 0.08);
-  --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+:root{
+  --bg:#fafaf9;
+  --surface:#ffffff;
+  --surface-2:#f5f5f4;
+  --border:#e7e5e4;
+  --border-strong:#d6d3d1;
+  --text:#1c1917;
+  --text-muted:#78716c;
+  --text-subtle:#a8a29e;
+  --accent:#1c1917;
+  --accent-hover:#292524;
+  --green:#059669;
+  --blue:#2563eb;
+  --amber:#d97706;
+  --radius:12px;
+  --radius-lg:16px;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  min-height: 100vh;
-  overflow-x: hidden;
-  background-image: 
-    radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 85% 70%, rgba(236, 72, 153, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 50% 100%, rgba(20, 184, 166, 0.1) 0%, transparent 50%);
-  background-attachment: fixed;
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  font-size:15px;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* ========== LAYOUT ========== */
-.app {
-  display: flex;
-  min-height: 100vh;
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400}
+
+/* ============ HEADER ============ */
+.header{
+  background:rgba(250,250,249,.85);
+  backdrop-filter:saturate(180%) blur(12px);
+  -webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:100;
 }
 
-/* ========== SIDEBAR ========== */
-.sidebar {
-  width: 260px;
-  background: rgba(19, 24, 50, 0.8);
-  backdrop-filter: blur(20px);
-  border-right: 1px solid var(--border);
-  padding: 24px 0;
-  position: fixed;
-  height: 100vh;
-  overflow-y: auto;
-  transition: transform 0.3s ease;
-  z-index: 100;
+.header-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:16px 32px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 24px 28px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 20px;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:var(--text);
 }
 
-.logo-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+.brand-mark{
+  width:32px;height:32px;
+  background:var(--accent);
+  color:#fff;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:-.5px;
 }
 
-.logo-text h1 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #fff, #a0a8c0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.brand-name{
+  font-size:16px;
+  font-weight:600;
+  letter-spacing:-.3px;
 }
 
-.logo-text p {
-  font-size: 11px;
-  color: var(--text-secondary);
-  margin-top: 2px;
+.header-nav{
+  display:flex;
+  gap:4px;
+  align-items:center;
 }
 
-.nav-section {
-  padding: 0 16px;
-  margin-bottom: 24px;
+.nav-link{
+  padding:8px 14px;
+  font-size:14px;
+  font-weight:500;
+  color:var(--text-muted);
+  text-decoration:none;
+  border-radius:8px;
+  transition:all .15s ease;
 }
 
-.nav-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--text-secondary);
-  padding: 0 12px;
-  margin-bottom: 10px;
-  font-weight: 600;
+.nav-link:hover{color:var(--text);background:var(--surface-2)}
+
+.header-cta{
+  padding:8px 16px;
+  background:var(--accent);
+  color:#fff;
+  font-size:14px;
+  font-weight:500;
+  text-decoration:none;
+  border-radius:8px;
+  transition:background .15s ease;
 }
 
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 14px;
-  border-radius: 10px;
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  margin-bottom: 4px;
+.header-cta:hover{background:var(--accent-hover)}
+
+/* ============ HERO ============ */
+.hero{
+  max-width:1200px;
+  margin:0 auto;
+  padding:80px 32px 60px;
+  text-align:center;
 }
 
-.nav-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-primary);
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 14px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:100px;
+  font-size:13px;
+  font-weight:500;
+  color:var(--text-muted);
+  margin-bottom:24px;
 }
 
-.nav-item.active {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.15));
-  color: var(--text-primary);
-  border: 1px solid rgba(99, 102, 241, 0.3);
+.badge-dot{
+  width:6px;height:6px;
+  background:var(--green);
+  border-radius:50%;
+  box-shadow:0 0 0 3px rgba(5,150,105,.15);
 }
 
-.nav-item .icon { font-size: 18px; }
-
-/* ========== MAIN ========== */
-.main {
-  flex: 1;
-  margin-left: 260px;
-  padding: 32px 40px;
-  min-width: 0;
+.hero h1{
+  font-family:'Instrument Serif',Georgia,serif;
+  font-size:64px;
+  font-weight:400;
+  line-height:1.05;
+  letter-spacing:-1.5px;
+  margin-bottom:20px;
+  color:var(--text);
 }
 
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-  gap: 20px;
-  flex-wrap: wrap;
+.hero h1 em{
+  font-style:italic;
+  color:var(--text-muted);
 }
 
-.page-title h2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 4px;
+.hero p{
+  font-size:18px;
+  color:var(--text-muted);
+  max-width:560px;
+  margin:0 auto 36px;
 }
 
-.page-title p {
-  color: var(--text-secondary);
-  font-size: 14px;
+.hero-actions{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
 }
 
-.menu-toggle {
-  display: none;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  color: white;
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 18px;
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 22px;
+  font-size:14px;
+  font-weight:500;
+  text-decoration:none;
+  border-radius:10px;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:all .15s ease;
+  font-family:inherit;
 }
 
-/* ========== SEARCH ========== */
-.search-box {
-  position: relative;
-  max-width: 320px;
-  width: 100%;
+.btn-primary{
+  background:var(--accent);
+  color:#fff;
 }
 
-.search-box input {
-  width: 100%;
-  padding: 12px 16px 12px 42px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text-primary);
-  font-size: 14px;
-  font-family: inherit;
-  outline: none;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
+
+.btn-secondary{
+  background:var(--surface);
+  color:var(--text);
+  border-color:var(--border);
 }
 
-.search-box input:focus {
-  border-color: var(--accent-1);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+.btn-secondary:hover{background:var(--surface-2);border-color:var(--border-strong)}
+
+/* ============ CONTAINER ============ */
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 32px;
 }
 
-.search-box::before {
-  content: '🔍';
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  opacity: 0.6;
+/* ============ TABS ============ */
+.tabs-wrapper{
+  border-bottom:1px solid var(--border);
+  margin-bottom:48px;
+  position:sticky;
+  top:65px;
+  background:var(--bg);
+  z-index:50;
 }
 
-/* ========== MODE TOGGLE ========== */
-.mode-toggle {
-  display: inline-flex;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 5px;
-  margin-bottom: 24px;
-  backdrop-filter: blur(10px);
+.tabs{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 32px;
+  display:flex;
+  gap:32px;
+  overflow-x:auto;
 }
 
-.mode-btn {
-  padding: 10px 28px;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  font-family: inherit;
+.tab{
+  padding:18px 0;
+  font-size:15px;
+  font-weight:500;
+  color:var(--text-muted);
+  background:none;
+  border:none;
+  border-bottom:2px solid transparent;
+  cursor:pointer;
+  white-space:nowrap;
+  font-family:inherit;
+  transition:all .15s ease;
+  margin-bottom:-1px;
 }
 
-.mode-btn.active {
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  color: white;
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+.tab:hover{color:var(--text)}
+
+.tab.active{
+  color:var(--text);
+  border-bottom-color:var(--text);
 }
 
-/* ========== STATS ========== */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  margin-bottom: 32px;
+.tab-count{
+  display:inline-block;
+  margin-left:8px;
+  padding:1px 8px;
+  background:var(--surface-2);
+  border-radius:100px;
+  font-size:12px;
+  color:var(--text-muted);
 }
 
-.stat-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px;
-  backdrop-filter: blur(20px);
-  transition: transform 0.2s ease;
+.tab.active .tab-count{background:var(--text);color:#fff}
+
+/* ============ SECTION ============ */
+.section{
+  padding:0 0 80px;
 }
 
-.stat-card:hover { transform: translateY(-3px); }
-
-.stat-card .label {
-  font-size: 12px;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
+.section-header{
+  margin-bottom:32px;
 }
 
-.stat-card .value {
-  font-family: 'Poppins', sans-serif;
-  font-size: 26px;
-  font-weight: 700;
+.section-header h2{
+  font-family:'Instrument Serif',Georgia,serif;
+  font-size:36px;
+  font-weight:400;
+  letter-spacing:-.8px;
+  margin-bottom:8px;
 }
 
-.stat-card:nth-child(1) .value { color: var(--accent-1); }
-.stat-card:nth-child(2) .value { color: var(--accent-2); }
-.stat-card:nth-child(3) .value { color: var(--accent-3); }
-.stat-card:nth-child(4) .value { color: var(--accent-4); }
-
-/* ========== SKILLS GRID ========== */
-.section-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.section-header p{
+  color:var(--text-muted);
+  font-size:15px;
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-bottom: 40px;
+/* ============ STATS ============ */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  margin-bottom:64px;
 }
 
-.skill-card {
-  position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  backdrop-filter: blur(20px);
+.stat{
+  background:var(--surface);
+  padding:24px;
 }
 
-.skill-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
+.stat-label{
+  font-size:12px;
+  font-weight:500;
+  color:var(--text-subtle);
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  margin-bottom:8px;
 }
 
-.skill-card:hover::before { transform: scaleX(1); }
-
-.skill-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+.stat-value{
+  font-family:'Instrument Serif',Georgia,serif;
+  font-size:32px;
+  font-weight:400;
+  letter-spacing:-.5px;
+  line-height:1;
 }
 
-.skill-icon {
-  width: 52px; height: 52px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  margin-bottom: 16px;
+/* ============ SKILLS ============ */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+  margin-bottom:64px;
 }
 
-.skill-card:nth-child(1) .skill-icon { background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05)); }
-.skill-card:nth-child(2) .skill-icon { background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(236, 72, 153, 0.05)); }
-.skill-card:nth-child(3) .skill-icon { background: linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(20, 184, 166, 0.05)); }
-.skill-card:nth-child(4) .skill-icon { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05)); }
-
-.skill-card h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 6px;
+.skill{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:28px;
+  text-decoration:none;
+  color:var(--text);
+  transition:all .2s ease;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  cursor:pointer;
 }
 
-.skill-card p {
-  color: var(--text-secondary);
-  font-size: 13px;
-  margin-bottom: 16px;
+.skill:hover{
+  border-color:var(--border-strong);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.04);
 }
 
-.skill-card .arrow {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  font-size: 18px;
-  color: var(--text-secondary);
-  transition: transform 0.3s ease;
+.skill-icon{
+  width:48px;height:48px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  flex-shrink:0;
+  background:var(--surface-2);
 }
 
-.skill-card:hover .arrow {
-  transform: translateX(5px);
-  color: var(--accent-1);
+.skill-body{flex:1}
+
+.skill-body h3{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:2px;
+  letter-spacing:-.2px;
 }
 
-/* ========== CAMBRIDGE GRID ========== */
-.cambridge-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-  margin-bottom: 40px;
+.skill-body p{
+  font-size:13px;
+  color:var(--text-muted);
 }
 
-.book-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px;
-  text-align: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(20px);
+.skill-arrow{
+  color:var(--text-subtle);
+  font-size:18px;
+  transition:transform .2s ease;
 }
 
-.book-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+.skill:hover .skill-arrow{
+  transform:translateX(4px);
+  color:var(--text);
 }
 
-.book-number {
-  width: 50px; height: 50px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0 auto 12px;
-  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+/* ============ CAMBRIDGE LIST ============ */
+.filters{
+  display:flex;
+  gap:12px;
+  margin-bottom:24px;
+  flex-wrap:wrap;
 }
 
-.book-card h4 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 14px;
+.search-input{
+  flex:1;
+  min-width:200px;
+  padding:10px 16px;
+  font-size:14px;
+  font-family:inherit;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--text);
+  outline:none;
+  transition:all .15s ease;
 }
 
-.book-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.search-input:focus{
+  border-color:var(--text);
+  box-shadow:0 0 0 3px rgba(28,25,23,.06);
 }
 
-.book-btn {
-  padding: 9px 12px;
-  border-radius: 10px;
-  font-size: 12px;
-  font-weight: 600;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  transition: all 0.2s ease;
-  display: block;
+.search-input::placeholder{color:var(--text-subtle)}
+
+.book-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:12px;
 }
 
-.book-btn.academic {
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  color: white;
+.book{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:20px;
+  transition:all .15s ease;
 }
 
-.book-btn.academic:hover {
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
-  transform: scale(1.03);
+.book:hover{
+  border-color:var(--border-strong);
 }
 
-.book-btn.general {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-primary);
-  border: 1px solid var(--border);
+.book-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--border);
 }
 
-.book-btn.general:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--accent-3);
+.book-num{
+  width:40px;height:40px;
+  border-radius:9px;
+  background:var(--accent);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
+  font-size:15px;
+  flex-shrink:0;
+  letter-spacing:-.5px;
 }
 
-/* ========== TOAST ========== */
-.toast {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  color: white;
-  padding: 14px 28px;
-  border-radius: 14px;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  transition: all 0.35s ease;
-  z-index: 1000;
+.book-title{
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:-.2px;
 }
 
-.toast.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
+.book-sub{
+  font-size:12px;
+  color:var(--text-muted);
 }
 
-/* ========== FOOTER ========== */
-.footer {
-  margin-top: 60px;
-  padding: 24px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 13px;
+.book-actions{
+  display:flex;
+  gap:8px;
 }
 
-.footer p { margin: 6px 0; }
-
-/* ========== RESPONSIVE ========== */
-@media (max-width: 900px) {
-  .sidebar { transform: translateX(-100%); }
-  .sidebar.open { transform: translateX(0); }
-  .main { margin-left: 0; padding: 20px; }
-  .menu-toggle { display: block; }
-  .page-title h2 { font-size: 22px; }
-  .search-box { max-width: 100%; }
+.book-btn{
+  flex:1;
+  padding:8px 12px;
+  font-size:13px;
+  font-weight:500;
+  font-family:inherit;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+  cursor:pointer;
+  text-decoration:none;
+  text-align:center;
+  transition:all .15s ease;
 }
 
-@media (max-width: 500px) {
-  .cambridge-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .book-card { padding: 14px; }
-  .mode-btn { padding: 9px 18px; font-size: 13px; }
+.book-btn:hover{
+  background:var(--surface-2);
+  border-color:var(--border-strong);
+}
+
+.book-btn.primary{
+  background:var(--accent);
+  color:#fff;
+  border-color:var(--accent);
+}
+
+.book-btn.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+
+/* ============ FOOTER ============ */
+.footer{
+  border-top:1px solid var(--border);
+  padding:40px 32px;
+  text-align:center;
+  color:var(--text-muted);
+  font-size:13px;
+  background:var(--surface);
+}
+
+.footer-inner{
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.footer p{margin:4px 0}
+
+.footer .disclaimer{
+  color:var(--text-subtle);
+  font-size:12px;
+  margin-top:12px;
+}
+
+/* ============ TOAST ============ */
+.toast{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%) translateY(80px);
+  background:var(--accent);
+  color:#fff;
+  padding:12px 20px;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:500;
+  opacity:0;
+  transition:all .25s ease;
+  z-index:1000;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  pointer-events:none;
+}
+
+.toast.show{
+  transform:translateX(-50%) translateY(0);
+  opacity:1;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:900px){
+  .hero h1{font-size:44px;letter-spacing:-1px}
+  .hero{padding:56px 24px 40px}
+  .container{padding:0 24px}
+  .tabs{padding:0 24px;gap:24px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .skills{grid-template-columns:1fr}
+  .header-inner{padding:14px 20px}
+  .header-nav{display:none}
+}
+
+@media (max-width:500px){
+  .hero h1{font-size:34px}
+  .hero p{font-size:16px}
+  .section-header h2{font-size:26px}
+  .stat-value{font-size:26px}
+  .book-list{grid-template-columns:1fr}
+  .header-cta{display:none}
 }
 </style>
 </head>
 <body>
 
-<div class="app">
-  <!-- SIDEBAR -->
-  <aside class="sidebar" id="sidebar">
-    <div class="logo">
-      <div class="logo-icon">🎯</div>
-      <div class="logo-text">
-        <h1>IELTS Master</h1>
-        <p>Practice Platform</p>
-      </div>
-    </div>
-
-    <nav class="nav-section">
-      <div class="nav-label">Menu</div>
-      <a class="nav-item active" onclick="scrollTo('dashboard')">
-        <span class="icon">📊</span> Dashboard
-      </a>
-      <a class="nav-item" onclick="scrollTo('skills')">
-        <span class="icon">📚</span> Practice Skills
-      </a>
-      <a class="nav-item" onclick="scrollTo('cambridge')">
-        <span class="icon">📖</span> Cambridge Tests
-      </a>
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="brand">
+      <div class="brand-mark">IM</div>
+      <div class="brand-name">IELTS Master</div>
+    </a>
+    <nav class="header-nav">
+      <a href="#practice" class="nav-link">Practice</a>
+      <a href="#cambridge" class="nav-link">Cambridge</a>
+      <a href="#mock" class="nav-link">Mock Test</a>
+      <a href="#about" class="nav-link">About</a>
     </nav>
+    <a href="#practice" class="header-cta">Get Started</a>
+  </div>
+</header>
 
-    <nav class="nav-section">
-      <div class="nav-label">Test Type</div>
-      <a class="nav-item" onclick="setMode('academic')">
-        <span class="icon">🎓</span> Academic
-      </a>
-      <a class="nav-item" onclick="setMode('general')">
-        <span class="icon">📝</span> General Training
-      </a>
-    </nav>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="badge">
+    <span class="badge-dot"></span>
+    100% Free Forever
+  </div>
+  <h1 class="serif">Master IELTS with<br><em>real practice tests</em></h1>
+  <p>Complete Cambridge practice tests, skill-based exercises, and full mock exams — all in one place, completely free.</p>
+  <div class="hero-actions">
+    <a href="#cambridge" class="btn btn-primary">Browse Cambridge Tests →</a>
+    <a href="#practice" class="btn btn-secondary">Practice by Skill</a>
+  </div>
+</section>
 
-    <nav class="nav-section">
-      <div class="nav-label">More</div>
-      <a class="nav-item" onclick="showToast('Coming soon!')">
-        <span class="icon">📈</span> My Progress
-      </a>
-      <a class="nav-item" onclick="showToast('Coming soon!')">
-        <span class="icon">⚙️</span> Settings
-      </a>
-    </nav>
-  </aside>
-
-  <!-- MAIN CONTENT -->
-  <main class="main">
-    <div class="topbar">
-      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-      <div class="page-title">
-        <h2>Welcome Back 👋</h2>
-        <p>Ready to practice for your IELTS exam?</p>
-      </div>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search tests..." onkeyup="searchBooks()">
-      </div>
-    </div>
-
-    <!-- DASHBOARD STATS -->
-    <div id="dashboard">
-      <div class="stats-row">
-        <div class="stat-card">
-          <div class="label">Cambridge Books</div>
-          <div class="value">12</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Total Tests</div>
-          <div class="value">24</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Practice Skills</div>
-          <div class="value">4</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Free Forever</div>
-          <div class="value">100%</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MODE TOGGLE -->
-    <div class="mode-toggle">
-      <button class="mode-btn active" id="btn-academic" onclick="setMode('academic')">Academic</button>
-      <button class="mode-btn" id="btn-general" onclick="setMode('general')">General Training</button>
-    </div>
-
-    <!-- SKILLS SECTION -->
-    <div id="skills">
-      <div class="section-title">🎯 Practice by Skill</div>
-      <div class="skills-grid">
-        <div class="skill-card" onclick="showToast('Listening practice - Coming soon!')">
-          <div class="skill-icon">🎧</div>
-          <h3>Listening</h3>
-          <p>4 sections • 40 questions</p>
-          <span class="arrow">→</span>
-        </div>
-
-        <div class="skill-card" onclick="showToast('Reading practice - Coming soon!')">
-          <div class="skill-icon">📖</div>
-          <h3>Reading</h3>
-          <p id="reading-desc">3 passages • 40 questions</p>
-          <span class="arrow">→</span>
-        </div>
-
-        <div class="skill-card" onclick="showToast('Writing practice - Coming soon!')">
-          <div class="skill-icon">✍️</div>
-          <h3>Writing</h3>
-          <p id="writing-desc">Task 1 & Task 2</p>
-          <span class="arrow">→</span>
-        </div>
-
-        <div class="skill-card" onclick="showToast('Speaking practice - Coming soon!')">
-          <div class="skill-icon">🗣️</div>
-          <h3>Speaking</h3>
-          <p>3 parts • 11-14 min</p>
-          <span class="arrow">→</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- CAMBRIDGE SECTION -->
-    <div id="cambridge">
-      <div class="section-title">📚 Cambridge Practice Tests (10-21)</div>
-      <div class="cambridge-grid" id="cambridgeGrid">
-        <!-- Generated by JS -->
-      </div>
-    </div>
-
-    <footer class="footer">
-      <p>⚠️ Independent practice platform. Not affiliated with British Council, IDP, or Cambridge.</p>
-      <p>© 2026 IELTS Master — Free Forever</p>
-    </footer>
-  </main>
+<!-- ============ TABS ============ -->
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab active" data-tab="academic">Academic <span class="tab-count" id="count-academic">12</span></button>
+    <button class="tab" data-tab="general">General Training <span class="tab-count" id="count-general">12</span></button>
+  </div>
 </div>
+
+<!-- ============ MAIN ============ -->
+<main class="container">
+
+  <!-- STATS -->
+  <section class="section" style="padding-top:40px">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-label">Cambridge Books</div>
+        <div class="stat-value">12</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Practice Tests</div>
+        <div class="stat-value">24</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Core Skills</div>
+        <div class="stat-value">4</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Price</div>
+        <div class="stat-value">Free</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="practice">
+    <div class="section-header">
+      <h2 class="serif">Practice by skill</h2>
+      <p>Focus on a specific section of the IELTS exam</p>
+    </div>
+    <div class="skills">
+      <div class="skill" onclick="showToast('Listening practice coming soon')">
+        <div class="skill-icon">🎧</div>
+        <div class="skill-body">
+          <h3>Listening</h3>
+          <p id="skill-listening">4 sections · 40 questions · 30 minutes</p>
+        </div>
+        <div class="skill-arrow">→</div>
+      </div>
+
+      <div class="skill" onclick="showToast('Reading practice coming soon')">
+        <div class="skill-icon">📖</div>
+        <div class="skill-body">
+          <h3>Reading</h3>
+          <p id="skill-reading">3 passages · 40 questions · 60 minutes</p>
+        </div>
+        <div class="skill-arrow">→</div>
+      </div>
+
+      <div class="skill" onclick="showToast('Writing practice coming soon')">
+        <div class="skill-icon">✍️</div>
+        <div class="skill-body">
+          <h3>Writing</h3>
+          <p id="skill-writing">Task 1 & Task 2 · 60 minutes</p>
+        </div>
+        <div class="skill-arrow">→</div>
+      </div>
+
+      <div class="skill" onclick="showToast('Speaking practice coming soon')">
+        <div class="skill-icon">🗣️</div>
+        <div class="skill-body">
+          <h3>Speaking</h3>
+          <p>3 parts · 11-14 minutes</p>
+        </div>
+        <div class="skill-arrow">→</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMBRIDGE -->
+  <section class="section" id="cambridge">
+    <div class="section-header">
+      <h2 class="serif" id="cambridge-title">Cambridge Academic Tests</h2>
+      <p id="cambridge-sub">Complete practice tests from Cambridge IELTS 10 to 21</p>
+    </div>
+
+    <div class="filters">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search by book number (e.g. 15)..." oninput="renderBooks()">
+    </div>
+
+    <div class="book-list" id="bookList"></div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p><strong>IELTS Master</strong> — Free practice for everyone</p>
+    <p class="disclaimer">This is an independent study platform and is not affiliated with, endorsed by, or connected to the British Council, IDP, Cambridge University Press, or any official IELTS organization.</p>
+  </div>
+</footer>
 
 <div class="toast" id="toast"></div>
 
 <script>
 // ============================================
-// CAMBRIDGE BOOKS DATA
+// DATA
 // ============================================
-// To add a test link, put your PDF in a folder called "cambridge/"
-// and change link to "cambridge/c10-academic.pdf" and ready to true
+// To add a test file:
+// 1. Upload your file to a folder called "cambridge/"
+// 2. Change link to "cambridge/c10-academic.pdf"
+// 3. Change ready from false to true
 // ============================================
-const cambridgeBooks = [
-  { number: 10, academic: { link: "", ready: false }, general: { link: "", ready: false } },
-  { number: 11, academic: { link: "", ready: false }, general: { link: "", ready: false } },
-  { number: 12, academic: { link: "", ready: false }, general: { link: "", ready: false } },
-  { number: 13, academic: { link: "", ready: false }, general: { link: "", ready: false } },
-  { number: 14, academic: { link: "", ready: false }, general: { link: "", ready: false } },
-  { number: 15, academic: { link: "", ready: false }, general: { link: "", ready: false } },
-  { number: 16, academic: { link: "", ready: false }, general: { link: "", ready: false } },
-  { number: 17, academic: { link: "", ready: false }, general: { link: "", ready: false } },
-  { number: 18, academic: { link: "", ready: false }, general: { link: "", ready: false } },
-  { number: 19, academic: { link: "", ready: false }, general: { link: "", ready: false } },
-  { number: 20, academic: { link: "", ready: false }, general: { link: "", ready: false } },
-  { number: 21, academic: { link: "", ready: false }, general: { link: "", ready: false } }
-];
+const cambridgeBooks = {
+  academic: [
+    {number:10,ready:false,link:''},{number:11,ready:false,link:''},
+    {number:12,ready:false,link:''},{number:13,ready:false,link:''},
+    {number:14,ready:false,link:''},{number:15,ready:false,link:''},
+    {number:16,ready:false,link:''},{number:17,ready:false,link:''},
+    {number:18,ready:false,link:''},{number:19,ready:false,link:''},
+    {number:20,ready:false,link:''},{number:21,ready:false,link:''}
+  ],
+  general: [
+    {number:10,ready:false,link:''},{number:11,ready:false,link:''},
+    {number:12,ready:false,link:''},{number:13,ready:false,link:''},
+    {number:14,ready:false,link:''},{number:15,ready:false,link:''},
+    {number:16,ready:false,link:''},{number:17,ready:false,link:''},
+    {number:18,ready:false,link:''},{number:19,ready:false,link:''},
+    {number:20,ready:false,link:''},{number:21,ready:false,link:''}
+  ]
+};
+
+let currentTab = 'academic';
 
 // ============================================
-// RENDER CAMBRIDGE BOOKS
+// RENDER BOOKS
 // ============================================
-function renderBooks(filter = '') {
-  const grid = document.getElementById('cambridgeGrid');
-  if (!grid) return;
+function renderBooks(){
+  const list = document.getElementById('bookList');
+  const query = document.getElementById('searchInput').value.trim();
+  const books = cambridgeBooks[currentTab].filter(b => String(b.number).includes(query));
 
-  grid.innerHTML = '';
+  list.innerHTML = '';
 
-  const filtered = cambridgeBooks.filter(b => 
-    String(b.number).includes(filter)
-  );
-
-  if (filtered.length === 0) {
-    grid.innerHTML = '<p style="color:var(--text-secondary); grid-column: 1/-1; text-align:center; padding:20px;">No books found</p>';
+  if(books.length === 0){
+    list.innerHTML = '<p style="color:var(--text-muted);grid-column:1/-1;padding:40px 0;text-align:center">No books found</p>';
     return;
   }
 
-  filtered.forEach(book => {
+  books.forEach(b => {
     const card = document.createElement('div');
-    card.className = 'book-card';
+    card.className = 'book';
 
-    const acadBtn = book.academic.ready
-      ? `<a href="${book.academic.link}" target="_blank" class="book-btn academic">📘 Academic</a>`
-      : `<button class="book-btn academic" onclick="showToast('Cambridge ${book.number} Academic - Coming soon!')">📘 Academic</button>`;
-
-    const genBtn = book.general.ready
-      ? `<a href="${book.general.link}" target="_blank" class="book-btn general">📗 General</a>`
-      : `<button class="book-btn general" onclick="showToast('Cambridge ${book.number} General - Coming soon!')">📗 General</button>`;
+    const content = b.ready && b.link
+      ? `<a href="${b.link}" target="_blank" class="book-btn primary">Open Test</a>`
+      : `<button class="book-btn primary" onclick="showToast('Cambridge ${b.number} — coming soon')">Coming Soon</button>`;
 
     card.innerHTML = `
-      <div class="book-number">${book.number}</div>
-      <h4>Cambridge IELTS</h4>
-      <div class="book-buttons">
-        ${acadBtn}
-        ${genBtn}
+      <div class="book-head">
+        <div class="book-num">${b.number}</div>
+        <div>
+          <div class="book-title">Cambridge ${b.number}</div>
+          <div class="book-sub">${currentTab === 'academic' ? 'Academic' : 'General Training'}</div>
+        </div>
       </div>
+      <div class="book-actions">${content}</div>
     `;
 
-    grid.appendChild(card);
+    list.appendChild(card);
   });
 }
 
 // ============================================
-// MODE TOGGLE (Academic / General)
+// TAB SWITCHING
 // ============================================
-let currentMode = 'academic';
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
 
-function setMode(mode) {
-  currentMode = mode;
-  document.getElementById('btn-academic').classList.toggle('active', mode === 'academic');
-  document.getElementById('btn-general').classList.toggle('active', mode === 'general');
+    currentTab = tab.dataset.tab;
 
-  const readingDesc = document.getElementById('reading-desc');
-  const writingDesc = document.getElementById('writing-desc');
+    // Update text based on tab
+    const title = document.getElementById('cambridge-title');
+    const sub = document.getElementById('cambridge-sub');
+    const listening = document.getElementById('skill-listening');
+    const reading = document.getElementById('skill-reading');
+    const writing = document.getElementById('skill-writing');
 
-  if (mode === 'academic') {
-    readingDesc.textContent = '3 long passages • 40 questions';
-    writingDesc.textContent = 'Task 1 (Graph) & Task 2 (Essay)';
-    showToast('Academic mode activated 🎓');
-  } else {
-    readingDesc.textContent = '3 sections • everyday texts';
-    writingDesc.textContent = 'Task 1 (Letter) & Task 2 (Essay)';
-    showToast('General Training mode activated 📝');
-  }
-}
+    if(currentTab === 'academic'){
+      title.textContent = 'Cambridge Academic Tests';
+      sub.textContent = 'Complete practice tests from Cambridge IELTS 10 to 21';
+      listening.textContent = '4 sections · 40 questions · 30 minutes';
+      reading.textContent = '3 passages · 40 questions · 60 minutes';
+      writing.textContent = 'Task 1 (Graph/Chart) & Task 2 (Essay) · 60 minutes';
+    } else {
+      title.textContent = 'Cambridge General Training Tests';
+      sub.textContent = 'Complete practice tests from Cambridge IELTS 10 to 21';
+      listening.textContent = '4 sections · 40 questions · 30 minutes';
+      reading.textContent = '3 sections · everyday texts · 60 minutes';
+      writing.textContent = 'Task 1 (Letter) & Task 2 (Essay) · 60 minutes';
+    }
+
+    document.getElementById('searchInput').value = '';
+    renderBooks();
+    showToast(currentTab === 'academic' ? 'Academic mode' : 'General Training mode');
+  });
+});
 
 // ============================================
-// SEARCH
-// ============================================
-function searchBooks() {
-  const query = document.getElementById('searchInput').value.trim();
-  renderBooks(query);
-}
-
-// ============================================
-// TOAST NOTIFICATION
+// TOAST
 // ============================================
 let toastTimeout;
-
-function showToast(message) {
-  const toast = document.getElementById('toast');
-  toast.textContent = message;
-  toast.classList.add('show');
-
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
   clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2200);
-}
-
-// ============================================
-// SIDEBAR TOGGLE (Mobile)
-// ============================================
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-}
-
-function scrollTo(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    event.target.closest('.nav-item').classList.add('active');
-  }
+  toastTimeout = setTimeout(() => t.classList.remove('show'), 2000);
 }
 
 // ============================================
 // INIT
 // ============================================
-document.addEventListener('DOMContentLoaded', () => {
-  renderBooks();
-});
+renderBooks();
 </script>
 
 </body>
